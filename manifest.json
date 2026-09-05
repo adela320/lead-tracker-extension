@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "version": "1.1",
+    "version": "1.2",
     "name": "Leads tracker",
     "description": "Tracks leads from browser tabs",
     "action": {
