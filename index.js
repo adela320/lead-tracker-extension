@@ -5,6 +5,7 @@ const ulEl = document.getElementById("ul-el")
 const deleteBtn = document.getElementById("delete-btn")
 const leadsFromLocalStorage = JSON.parse( localStorage.getItem("myLeads") )
 const tabBtn = document.getElementById("tab-btn")
+const exportBtn = document.getElementById("export-btn")
 
 if (leadsFromLocalStorage) {
     myLeads = leadsFromLocalStorage
@@ -19,6 +20,23 @@ tabBtn.addEventListener("click", function(){
         render(myLeads)
     }
 })
+})
+
+exportBtn.addEventListener("click", function() {
+    if(myLeads.length === 0)
+    {
+        alert("No leads to export!");
+        return;
+    }
+    const csv = "Link\n" + myLeads.join("\n")
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement("a")
+    a.href = url
+    a.download = "leads.csv"
+    a.click()
+
+    URL.revokeObjectURL(url)
 })
 
 function render(leads) {
